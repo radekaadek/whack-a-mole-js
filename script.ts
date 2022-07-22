@@ -1,23 +1,16 @@
-export {};
+export{};
 
-// var newDiv = document.createElement('div');
-// var grid = document.body.appendChild(newDiv);
-// grid.setAttribute("class", "grid");
-let add_element = () => {
-    const template = document.createElement('div');
-    template.innerHTML = "Content inside DIV";
-    
-    document.body.appendChild(template);
+const newDiv = document.createElement('div');
+let grid = document.body.appendChild(newDiv);
+grid.setAttribute("class", "grid");
+let items: any[] = [];
+let item: any;
+let template: any;
+
+for (var i = 1; i < 17; i++) {
+    template = document.createElement('div');
+    template.setAttribute("class", "grid-item");
+    template.setAttribute("id", i.toString());
+    item = grid.appendChild(template);
+    items.push(item);
 }
-
-add_element();
-// var items: any[];
-// items = [];
-
-// for (var i = 0; i < 16; i++) {
-//     var item = document.body.appendChild(newDiv);
-//     item.setAttribute("class", "grid-item");
-//     item.setAttribute("id", i.toString());
-//     items.push(item);
-// }
-
