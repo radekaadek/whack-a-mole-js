@@ -1,0 +1,15 @@
+.grid {
+    width: 100vw;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.targetIMG {
+    width: 30vw;
+}
+
+.textBox {
+    text-align: center;
+}
