@@ -1,15 +1,23 @@
 .grid {
     width: 100vw;
-    height: 500px;
-    display: flex;
+    height: 90vh;
+    display: inline-grid;
     justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
 }
 
 .targetIMG {
-    width: 30vw;
+    width: min(30vw, 33vh);
+    height: min(30vw, 25vh);
 }
 
 .textBox {
     text-align: center;
+    font-size: 5vw;
+}
+
+.block {
+    display: inline-block;
 }

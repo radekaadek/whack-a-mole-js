@@ -15,23 +15,44 @@ function chooseNewID(currentID) {
     return randomID;
 }
 
-// choose a new hole for the target and return its id
-function swapTargets(items, previousID, nextID) {
-    let currentElement = items[previousID-1];
-    currentElement.setAttribute("src", "grey.png");
-    let newElement = items[nextID-1];
-    newElement.setAttribute("src", "bunny.png");
+function removeTarget(target) {
+    target.setAttribute("src", "grey.png");
+    target.removeAttribute('onclick');
 }
 
-function play() {
-    counter = 0
-    for (var j = 0; j < 19; j++) {
-        newRandomID = chooseNewID(targetID);
-        console.log(newRandomID);
-        swapTargets(items, targetID, newRandomID);
-        targetID = newRandomID;
-    }
+function setNewTarget(target) {
+    target.setAttribute("src", "bunny.png");
+    target.setAttribute('onclick', 'clickOnBunny(this)');
 }
+
+async function clickOnBunny(){
+    counter++;
+    textBox.innerHTML = "Bunnies hit: " + counter.toString();
+    if (counter == 9) {
+        alert("You won!");
+    }
+    newRandomID = chooseNewID(targetID);
+    console.log(newRandomID);
+    removeTarget(targetItem);
+    await sleep(randomNumber(750, 2000));
+    targetItem = items[newRandomID-1]
+    setTimeout(setNewTarget(targetItem), randomNumber(1000, 2000));
+    targetID = newRandomID;
+}
+
+async function play() {
+    let counter = 0;
+    textBox.innerHTML = "Bunnies hit: " + counter.toString();
+    removeTarget(targetItem);
+    await sleep(randomNumber(1000, 2000));
+    targetItem = items[chooseNewID(targetID)-1]
+    setNewTarget(targetItem);
+}
+
+let line = document.createElement('div');
+textBox = document.body.appendChild(line)
+textBox.innerHTML = "Click on the rabbit to start the game!";
+textBox.setAttribute("class" ,"textBox")
 
 // create a grid element
 const newDiv = document.createElement('div');
@@ -44,21 +65,26 @@ let item;
 let template;
 
 //draw empty squares
-for (var i = 1; i < 10; i++) {
-    template = document.createElement('img');
-    template.setAttribute("id", i.toString());
-    template.setAttribute("class", "targetIMG");
-    template.setAttribute("src", "grey.png");
-    item = grid.appendChild(template);
-    items.push(item);
+for (var i = 1; i < 4; i++) {
+    let newBlock = document.createElement('div');
+    newBlock.setAttribute("class", "block");
+    newBlock.setAttribute("blockID", i);
+    grid.appendChild(newBlock);
+    for (var j = 1; j < 4; j++) {
+        template = document.createElement('img');
+        template.setAttribute("id", (i*3+j).toString());
+        template.setAttribute("class", "targetIMG");
+        template.setAttribute("src", "grey.png");
+        item = newBlock.appendChild(template);
+        items.push(item);
+    }
 }
 
 let targetID = chooseNewID(-1);
 let newRandomID;
-swapTargets(items, 1, targetID);
+let targetItem = items[targetID-1]
+setNewTarget(targetItem);
 
-let line = document.createElement('div');
-textBox = document.body.appendChild(line)
-textBox.innerHTML = "Click on the rabbit to start the game!"
-textBox.setAttribute("class" ,"textBox")
-play()
+let counter = 0;
+targetItem.setAttribute("onclick",
+                        "play()");
