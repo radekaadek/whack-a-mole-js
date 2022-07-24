@@ -1,7 +1,7 @@
-const NO_ROWS = 3
-const NO_COLLUMNS = 3
-const NO_ROUNDS = 10
-const numberOfSquares = NO_COLLUMNS*NO_ROWS
+const NO_ROWS = 3;
+const NO_COLLUMNS = 3;
+const NO_ROUNDS = 10;
+const numberOfSquares = NO_COLLUMNS*NO_ROWS;
 let startTime;
 
 // Function to generate random number in a given range
@@ -42,7 +42,7 @@ async function clickOnBunny(){
     removeTarget(targetItem);
     sleepTime = randomNumber(750, 2000);
     await sleep(sleepTime);
-    waitTime += startTime-sleepTime;
+    waitTime += sleepTime;
     newRandomID = chooseNewID(targetID);
     targetItem = items[newRandomID-1];
     setNewTarget(targetItem);
@@ -57,7 +57,9 @@ async function play() {
     let counter = 0;
     textBox.innerHTML = "Bunnies hit: " + counter.toString();
     removeTarget(targetItem);
-    await sleep(randomNumber(1000, 2000));
+    sleepTime = randomNumber(1000, 2000);
+    await sleep(sleepTime);
+    waitTime = sleepTime;
     startTime = new Date().getTime();
     targetItem = items[chooseNewID(targetID)-1];
     setNewTarget(targetItem);
