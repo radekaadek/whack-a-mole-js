@@ -53,8 +53,16 @@ async function clickOnBunny(){
     }
 }
 
+// Start the game
 async function play() {
     let counter = 0;
+    removeTarget(targetItem);
+    textBox.innerHTML = "3";
+    await sleep(1000);
+    textBox.innerHTML = "2";
+    await sleep(1000);
+    textBox.innerHTML = "1";
+    await sleep(1000);
     textBox.innerHTML = "Bunnies hit: " + counter.toString();
     removeTarget(targetItem);
     sleepTime = randomNumber(1000, 2000);
@@ -65,6 +73,7 @@ async function play() {
     setNewTarget(targetItem);
 }
 
+// create a text box to display the number of hits
 let line = document.createElement('div');
 textBox = document.body.appendChild(line);
 textBox.innerHTML = "Click on the rabbit to start the game!";

@@ -1,6 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+} 
+
+html {
+    background-color: rgb(193, 255, 174);
+}
+
 .grid {
     width: 100vw;
-    height: 90vh;
+    height: auto;
     display: inline-grid;
     justify-content: center;
     flex-wrap: wrap;
@@ -10,14 +19,20 @@
 
 .targetIMG {
     width: min(30vw, 33vh);
-    height: min(30vw, 25vh);
+    height: min(35vw, 25vh);
 }
 
 .textBox {
     text-align: center;
-    font-size: min(5vw, 5vh);
+    font-size: min(8vw, 5vh);
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(64, 124, 255);
 }
 
 .block {
     display: inline-block;
 }
+
+
